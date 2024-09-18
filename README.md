@@ -171,7 +171,26 @@ This sheet convers all the basics of JAVA
     System.out.println(i);
         }
     }
+### Class and Object
+    Object - is something that have properties and has certain behaviour.
+    How to create obj 
+    classname reference_variable = new classname();
+    
+    class Calculator {
+        public int add(int num1, int num2) {
+            return num1 + num2;
+        }
+    }
 
+    class Hello {
+        public static void main(String args[]) {
+            Calculator obj = new Calculator(); //Creating the Object here
+            int result = obj.add(4, 5);
+            System.out.println(result);
+        }
+    }
+    
+    
 
 
 
