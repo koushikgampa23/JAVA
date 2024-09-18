@@ -10,7 +10,7 @@ This sheet convers all the basics of JAVA
     
     Cmd: jshell
     Now I can write System.out.println("Hello world");
-    ![image](https://github.com/user-attachments/assets/eb661732-47ef-4a0c-8162-630a50accb3d)
+![image](https://github.com/user-attachments/assets/eb661732-47ef-4a0c-8162-630a50accb3d)
 ### How Java Works
     Java is independent because of JVM(Java Virtual machine).
     Independent – It can run on any platform
@@ -33,8 +33,7 @@ This sheet convers all the basics of JAVA
     JDK will have JRE, JRE will have JVM
     If my friend have JRE and JVM he can directly run my program.
     Java follows WORA (Write Once Run Anywhere)
-
-    ![image](https://github.com/user-attachments/assets/feb7e5ee-31b6-4c82-9110-57e03294cadb)
+![image](https://github.com/user-attachments/assets/feb7e5ee-31b6-4c82-9110-57e03294cadb)
 ### Data Types
     Variables:
     Type variablename = value;
@@ -47,9 +46,9 @@ This sheet convers all the basics of JAVA
     It will throw a error since 10.0 is considered as double by default so we need to add f at the end.
     float a = 10.0f; //works 
     double b = 10.0; //works
-    ![image](https://github.com/user-attachments/assets/ab3fc211-c91e-4c8c-a75b-66e9a17a49b7)
+![image](https://github.com/user-attachments/assets/ab3fc211-c91e-4c8c-a75b-66e9a17a49b7)
     Playing with strings
-    ![image](https://github.com/user-attachments/assets/f17a593f-8ad3-4848-80d9-9cb5cd72d273)
+![image](https://github.com/user-attachments/assets/f17a593f-8ad3-4848-80d9-9cb5cd72d273)
 ### Type Conversion and casting:
     class HelloWorld {
         public static void main(String[] args) {
