@@ -564,7 +564,38 @@ This sheet convers all the basics of JAVA
     }
 
 ## This keyword in Java
-
+    This is keyword that represents the current object
+    class Human {
+        private int age;
+        
+        public int getAge(){
+            return age;
+        }
+        // public void setAge(int a){
+        //     age = a;
+        // }
+        //What if i want to use the parameter name as age
+        // public void setAge(int age){
+        //     age = age; //0 if two variables have same name the priority is given to local variable but we need to instance variable so that in the get method we get value
+        // }
+        //To solve this issue we have to pass obj to differentiate
+        
+        // public void setAge(int age, Human obj){
+        //     obj.age = age; //30 but here we are passing obj again that is not good instead java gives this keyword that has current object in it.
+        // }
+        
+        public void setAge(int age){
+            this.age = age; //Now we can see the difference this.age is instance varibale and age is local variable
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]) {
+            Human obj = new Human();
+            obj.setAge(10, obj);
+            System.out.println(obj.getAge());
+        }
+    }
     
 
 
