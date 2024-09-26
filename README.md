@@ -189,6 +189,95 @@ This sheet convers all the basics of JAVA
             System.out.println(result);
         }
     }
+    To create components we use classes
+
+### Methods
+    class Computer {
+        public void playmusic() {
+            System.out.println("Playing Music...");
+        }
+        public String getComputerCount() {
+            return "Computer count is 5";
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]){
+            System.out.println("hello");
+            Computer obj = new Computer();
+            String computerstatement = obj.getComputerCount();
+            System.out.println(computerstatement);
+        }
+    }
+#### Method Overloading
+    We have same method name and different parameters that is called method overloading, if we have same method name and same paramters but the different return type it doesnot work. Since it is only concentrated on different parameters not the return type
+    different parameter meaning = the parameter length can be different or parameter type can be different
+    class Computer {
+        public int add(int a, int b){
+            return a+b;
+        }
+        public int add(int a, int b, int c){
+            return a+b+c;
+        }
+        public double add(double a, double b){
+            return a+b;
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]){
+            Computer obj = new Computer();
+            int addition = obj.add(2,3,4);
+            double doubleaddition = obj.add(2.5, 4.5);
+            System.out.println(addition); //9
+            System.out.println(doubleaddition); //7.0
+        }
+    }
+    Example for same paramters but different return type
+    class Computer {
+        public int add(int a, int b){
+            return a+b;
+        }
+        public double add(int a, int b){
+            return (double)a+b;
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]){
+            Computer obj = new Computer();
+            int addition = obj.add(2,3);
+            System.out.println(addition);
+        }
+    }
+    This code is failed since add(int,int) function already exists
+
+### Stack and Heap for the method
+    Every method will have their own seperate stack and all the global variables or instance variables are stored in the heap memory, the local variables are part of the stack.
+    Since we are creating object then we get the address. this object has been stored in the heap memory.
+    When ever we call this obj we are refering the same obj and using.
+    We can create multiple objects then in the heap we can have multiple objects.
+    Creating Multiple objects below and if we change the value of one object does it change the in the other place
+    class Computer {
+        int num = 5;
+        public void getNum(){
+            System.out.println(num);
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]){
+            int data = 10;
+            Computer obj = new Computer();
+            Computer obj1 = new Computer();
+            obj.num = 10;
+            obj.getNum(); //10
+            obj1.getNum(); //5
+        }
+    }
+    refer 28 classes for the image
+
+
     
     
 
