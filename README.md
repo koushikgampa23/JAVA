@@ -515,6 +515,56 @@ This sheet convers all the basics of JAVA
             Class.forName("Mobile");
         }
     }
+
+### Encapsulation
+    wrapping of data and code together
+    other words Encapsulating code and methods together
+    class Human {
+        String name = "koushik";
+        private String location = "Sai Nagar, Jammikunta";
+        
+        public String getLocation() {
+            return location;
+        }
+        
+    }
+    
+    class Main {
+        public static void main(String args[]) {
+            Human obj = new Human();
+            System.out.println(obj.name); //koushik
+            // System.out.println(obj.location); //Error Location has private access in the Human class
+            String location = obj.getLocation(); //Sai Nage, jammikunta the private varibles are only accessable using the class own methods
+            System.out.println(location);
+        }
+    }
+
+    Q) what if the varible is not intialized ?
+    we have to create methods to set and get the values to data.
+    class Human {
+        String name;
+        private String location;
+        
+        public String getLocation() {
+            return location;
+        }
+        
+        public void setLocation(String m) {
+            location = m;
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]) {
+            Human obj = new Human();
+            obj.setLocation("Sai Nagar");
+            String location = obj.getLocation();
+            System.out.println(location);
+        }
+    }
+
+## This keyword in Java
+
     
 
 
