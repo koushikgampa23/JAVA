@@ -276,8 +276,66 @@ This sheet convers all the basics of JAVA
         }
     }
     refer 28 classes for the image
-
-
+## Array
+### Creation of array
+    import java.util.Arrays;
+    
+    class Main {
+        public static void main(String args[]){
+           //Creation of an array
+           //Static array
+           int staticArray[] = {1,2,3,4,5};
+           //Print entire array
+           System.out.println(Arrays.toString(staticArray)); //[1,2,3,4,5]
+           //Change the value
+           staticArray[0] = 6;
+           //Best way to pring array
+           for(int i=0; i<staticArray.length; i++){
+               System.out.print(staticArray[i]+" ");
+           }
+           System.out.println();
+           //Dynamic Array if i dont set the value the default will be zero
+           int arr[] = new int[5];
+           System.out.println(Arrays.toString(arr));
+           //Dynamic 2d Arrays
+           //Assign random values and printing the 2d array
+           int num[][] = new int[4][5];
+           for(int i=0; i<num.length; i++){
+               for(int j=0; j<num[0].length;j++){
+                   num[i][j] = (int)(Math.random()*100);
+                   System.out.print(num[i][j]+" ");
+               }
+               System.out.println();
+           }
+           System.out.println();
+           //Enhanced for Loop 
+           for(int n[]: num){ //Grabs Entire array of each step
+               for(int m: n){ //Grabs each element of the array
+                   System.out.print(m+" ");
+               }
+               System.out.println();
+           }
+           //Lets create a jagged array meaning an array can contain different length of columns in each row 
+           int jaggedArray[][] = new int[3][];
+           jaggedArray[0] = new int[3];
+           jaggedArray[1] = new int[4];
+           jaggedArray[2] = new int[2];
+           //Print the jagged array
+           for(int i=0; i<jaggedArray.length; i++){
+               for(int j=0; j<jaggedArray[i].length; j++){
+                   System.out.print(jaggedArray[i][j]+" ");
+               }
+               System.out.println();
+           }
+           //Enhanced For loop 
+           for(int a[]: jaggedArray){
+               for(int n: a){
+                   System.out.print(n+" ");
+               }
+               System.out.println();
+           }
+        }
+    }
     
     
 
