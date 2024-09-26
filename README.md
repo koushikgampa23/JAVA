@@ -336,7 +336,73 @@ This sheet convers all the basics of JAVA
            }
         }
     }
+    An array is an object since it is created using new keyword. that is stored in the heap memory.
+    Size is fixed.
+    It is storing only one type of values not storing multiple type values.
+    Searching is difficult.
+#### Array of Objects
+    import java.util.Arrays;
+
+    class Student {
+        String name;
+        int marks;
+        int age;
+    }
     
+    class Main {
+        public static void main(String args[]){
+            Student s1 = new Student();
+            s1.name = "Koushik";
+            s1.marks = 98;
+            s1.age = 25;
+            Student s2 = new Student();
+            s2.name = "K";
+            s2.marks = 95;
+            s2.age = 12;
+            Student s3 = new Student();
+            s3.name = "G";
+            s3.marks = 92;
+            s3.age = 15;
+            //Array of objects
+            Student students[] = new Student[3];
+            students[0] = s1;
+            students[1] = s2;
+            students[2] = s3;
+            for(int i=0; i<students.length; i++){
+                System.out.println(students[i].name);
+            }
+        }
+    }
+### Strings
+    String is a class in the java, since it is a class i need to create a obj so that i can use.
+    String name = new String("Koushik");
+    String name = "koushik"; //Even this works the java automatically creates a object for you.
+    since it is a class we can have multiple methods.
+    name.concat(" gampa");
+    System.out.println(name); //Koushik Gampa
+    String is immutable every time we update a string it creates new string, the older is not removed it stays in the special area of the heap memory that is called as String Constant pool.
+    Since we reuses the strings multiple times.
+    Example
+    String name="koushik";
+    String name2="koushik";
+    System.out.println(name==name1); //True here comparing the address of the strings it is true
+    
+    first in the string constant pool it will create koushik, if koushik is there it dont create a new string instead it will give the address;
+    String s1 = "raja";
+    s1 = s1 + "run";
+    in the string constant pool it will create the raja, it will creat one more variable raja run. since raja is no longer required it removed by java garbage collector to save some space.
+    For photo refer 37 lecture
+
+### Mutable String(String Buffer and String Builder)
+    class Main {
+        public static void main(String args[]){
+            StringBuffer s1 = new StringBuffer("Koushik");
+            s1.append(" Gampa");
+            s1.insert(0, "Java ");
+            System.out.println(s1);
+        }
+    }
+    StringBuffer and StringBuilder have almost same methods but the only difference is StringBuffer is thread safe where as StringBuilder is not thread safe.
     
 
 
