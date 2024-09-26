@@ -596,8 +596,6 @@ This sheet convers all the basics of JAVA
             System.out.println(obj.getAge());
         }
     }
-    
-
 
 
 
