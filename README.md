@@ -403,6 +403,118 @@ This sheet convers all the basics of JAVA
         }
     }
     StringBuffer and StringBuilder have almost same methods but the only difference is StringBuffer is thread safe where as StringBuilder is not thread safe.
+### Static
+#### Static Variable
+    Static variable is shared by different objects. Consider it has a common variable if we change in one place it effects all the areas.
+    static variables are shared between different objects.
+    static makes the varable class member not object member.
+    class Mobile {
+        String brand;
+        int price;
+        static String name;
+        
+        public void printDetails(){
+            System.out.println(brand + " " + price+ " "+ name);
+        }
+    }
+
+    class Main {
+        public static void main(String args[]){
+            Mobile obj = new Mobile();
+            obj.brand = "Nokia";
+            obj.price = 20000;
+            obj.name = "Smart Phone";
+            
+            Mobile obj2 = new Mobile();
+            obj2.brand = "iphone";
+            obj2.price = 50000;
+            obj2.name = "Iphone";
+            System.out.println(obj2.name); //Iphone
+            System.out.println(obj.name); //Iphone 
+            //since the variable is static it acts as a common class even if the value of the name is modified using obj2 it effects obj1
+            //we can modify static variable using objects and class as well. The recommended way is class modification
+            Mobile.name = "Smart Phone";
+            System.out.println(obj.name); //Smart Phone
+            System.out.println(obj2.name); //Smart Phone
+        }
+    }
+#### Static Method
+    class Mobile {
+        String brand;
+        int price;
+        static String name;
+        
+        public void printDetails(){
+            System.out.println(brand + " " + price+ " "+ name);
+        }
+        public static void show(){
+            //System.out.println(brand + " " + price + " " + name); //we can directly use the name here but we cannot use brand and price
+            //we can use static varibale inside the static method directly but we cant use non static variable
+            // Reason since static variable is common varible for the all the objects we can use.
+            //But brand, price differs for individual objects but we can indirectly use it as below see show1 method.
+        }
+        public static void show1(Mobile obj){
+            System.out.println(obj.brand + " " + obj.price+ " "+ name); //we are using it indirectly
+        }
+    }
+
+    class Main {
+        public static void main(String args[]){
+            Mobile obj = new Mobile();
+            obj.brand = "Nokia";
+            obj.price = 20000;
+            obj.name = "Smart Phone";
+            
+            Mobile obj2 = new Mobile();
+            obj2.brand = "iphone";
+            obj2.price = 50000;
+            obj2.name = "Iphone";
+            
+            Mobile.show();
+            Mobile.show1(obj);
+            Mobile.show1(obj2);
+        }
+    }
+    Q) why do we use static in public static void main()?
+    If the excution is not started how can we create a object.
+    if i remove static in the pulic static void main()
+    if i want to call the main i need to use Main obj = new Main(); obj.main();
+    if excution is not started we cant create obj. if excution is started only then we can create obj.This is deadlock event if we want to solve this issue we use static if we use this then there is no need of creating object.
+    we can directly call the method directly using Main.main();
+### Static block
+    Static block is used to initialize static variables
+    class Mobile {
+        String brand;
+        int price;
+        static String name;
+        static {
+            name = "Smart Phone"; //initialize the static varible it wont get called every time the object has been created.
+            System.out.println("Static Method called!");
+        }
+        Mobile() {
+            brand = ""; //Giving default value in the constructor
+            price = 0;
+            System.out.println("Constructor called!");
+        }
+    }
+    
+    class Main {
+        public static void main(String args[]) throws ClassNotFoundException{
+            Mobile obj = new Mobile();
+            obj.brand = "samsung";
+            obj.price = 20000;
+            Mobile obj2 = new Mobile();
+            obj2.brand = "Realme";
+            obj2.price = 10000;
+            
+            //Op: Static Method called!, Constructor called! , Constructor called!
+            //every time a obj gets created it follows two steps 1. Class loads and 2.objects get intialized. the class loads only once.
+            //every time class loads it has been stored in a special area of jvm called as ClassLoader
+            // If no object then class is not loaded
+            //To load the class without creating object we can use 
+            Class.forName("Mobile");
+        }
+    }
     
 
 
