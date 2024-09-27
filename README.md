@@ -764,7 +764,99 @@ This sheet convers all the basics of JAVA
 ### Packages
     Pending
 ### Access Modifiers
+
+### Dynamic Method Dispatch
+    Creating object of child and assign the value to the parent class type is called the dynamic method dispatch.
+    class A {
+      public void show(){
+          System.out.println("This is A show");
+      }
+    }
+    class B extends A {
+        public void show(){
+            System.out.println("This is B show");
+        }
+    }
+    class C extends A {
+        public void show(){
+            System.out.println("This is C show");
+        }
+    }
+    class D {
+        
+    }
     
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    A obj = new A();
+    	    obj.show();
+    	    obj = new B(); //Since B is inheriting A object we can create obj B object that can be assigned to A type reference variable
+    	    obj.show();
+    	    obj = new C();
+    	    obj.show();
+    	    //obj = new D(); //It will be incompactable type since D is not inheriting the A 
+    	    
+    	    A obj1 = new B(); //The reference variable type A but the object that we have created is B object
+    	    obj1.show();
+    	}
+    }
+### Final
+    Method:
+        int a = 10;
+	    a = 20;
+	    System.out.println(a); //Normally we can directly update the value of a if i want to make it non changeable i need to use final
+	    final int b = 10;
+	    b = 20; //Will get error b cant be changed since it is a constant
+     Class:
+         final class Calc {
+            public void show(){
+                System.out.println("In the Calc application");
+            }
+            public int add(int a, int b) {
+                return a+b;
+            }
+        }
+        
+        // class AdvanceCalc extends Calc {
+            
+        // } // will get the error since final class cannot be extended stops inheritance
+        
+        public class Main
+        {
+        	public static void main(String[] args) {
+        	    Calc obj = new Calc();
+        	    System.out.println(obj.add(2,3));
+        	    obj.show();
+        	}
+        }
+    Method:
+        //Suppose i have a class and i have methods such as author name and add feature. i dont want any one to replace the author name but they can use my add feature.
+        class Calc {
+            public final void showAuthor(){
+                System.out.println("The Author is koushik");
+            }
+            public int add(int a, int b) {
+                return a+b;
+            }
+        }
+        
+        class AdvanceCalc extends Calc{
+            // public void showAuthor(){
+            //     System.out.println("The Author is KRK");
+            // } //i will get error since i cant override the final method
+        }
+        
+        public class Main
+        {
+        	public static void main(String[] args) {
+        	    AdvanceCalc obj = new AdvanceCalc();
+        	    obj.showAuthor();
+        	    System.out.println(obj.add(2,3));
+        	}
+        }
+
+
     
 
 
