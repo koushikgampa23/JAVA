@@ -711,8 +711,57 @@ This sheet convers all the basics of JAVA
     // This is A 
     // This is B 
     // since in the constructor B there is a hidden default method super(); that calls the A constructor automatically
+### Overriding 
+    Code:
+    class A {
+       public void show() {
+           System.out.println("This is A shows");
+       }
+    }
+    class B extends A {
+        public void show() {
+            System.out.println("This is B show");
+        }
+        
+    }
     
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    A obj = new A();
+    	    obj.show();
+    	    B obj2 = new B();
+    	    obj2.show();
+    	}
+    }
+    Best Example for Method overloading and 
+    Code:
+    class A {
+       public void show() {
+           System.out.println("This is A shows");
+       }
+       public void show(double time) { //Method overloading
+           System.out.println("Today:"+time);
+       }
+    }
+    class B extends A {
+        public void show() { //Method overriding
+            System.out.println("This is B show");
+        }
+        
+    }
     
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    A obj = new A();
+    	    obj.show();
+    	    B obj2 = new B();
+    	    obj2.show();
+    	    obj2.show(6.30);
+    	}
+    }
+
 
     
 
