@@ -597,6 +597,124 @@ This sheet convers all the basics of JAVA
         }
     }
 
+## Casing
+    //Camel Casing
+    class and interface - capital, Calc
+    variables and methods - small letters
+    Constants - full caps PIE
+
+    showMyMarks() - method
+    CalcManager - class
+    CalcManager() - constructor
+
+### Anonomous object
+    Creating Object without the reference variable is called anonomous object.
+    Student students = new Student();
+    students is a reference to the object where as new Student() is the actual object.
+    Code:
+    class Student {
+        int age;
+        public Student(int age) {
+            this.age = age;
+            System.out.println("Object created!");
+        }
+        public void show(){
+            System.out.println(this.age);
+        }
+    }
+    
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    new Student(10).show(); //Here object is created without reference variable we cannot reuse this obj since we doesnot have reference variable. We can only once this kind of objects.
+    	    new Student(20).show();
+    	}
+    }
+    
+### Inheritance
+    parent - child
+    base - dervied
+    super - subclass
+    Multi level inheritance works
+    Multiple inheritance doesnot work, since ambigous problem
+    class Calc {
+        public int add(int a, int b){
+            return a+b;
+        }
+        public int sub(int a, int b){
+            return a-b;
+        }
+    }
+    
+    class AdvCalc extends Calc {
+        public int multiple(int a, int b){
+            return a*b;
+        }
+        public int division(int a, int b){
+            return a/b;
+        }
+    }
+    
+    class VeryAdvanceCalc extends AdvCalc {
+        public int module(int a, int b){
+            return a%b;
+        }
+    }
+    
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    VeryAdvanceCalc obj = new VeryAdvanceCalc();
+    	    int r1 = obj.add(4,5);
+    	    int r2 = obj.sub(9,3);
+    	    int r3 = obj.multiple(4,5);
+    	    int r4 = obj.module(4,5);
+    	    System.out.println(r1+ " " + r2+" "+ r3+" "+r4);
+    	}
+    }
+#### Super and this in inheritance
+    super() - is used to call the constructor of the parent class constructor even if we dont metion it will be there by default
+    this() - is used to call the constructors of the same class
+    class A {
+        public A() {
+            System.out.println("This is A");
+        }
+        public A(int a){
+            System.out.println("This is parameterized constructor A");
+        }
+    }
+    class B extends A {
+        public B() {
+            super(4);
+            System.out.println("This is B");
+        }
+        public B(int a){
+            super(5); //call super to pass the consturctor value
+            System.out.println("This is parameterized constructor B");
+        }
+        public B(int a, int b){
+            this(); //this is as same as super() but we can call constructors of the same class
+            System.out.println("This is 2 parameterized constructor");
+        }
+    }
+    
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    B obj = new B();
+    	    B obj2 = new B(5); // My requirement is to have parameterized constructor for both class A and class B
+    	    B obj3 = new B(5,6); //My requirement call the unparameterized constructor and parameterized constructor of A
+    	}
+    }
+    
+    // output we get as 
+    // This is A 
+    // This is B 
+    // since in the constructor B there is a hidden default method super(); that calls the A constructor automatically
+    
+    
+
+    
 
 
 
