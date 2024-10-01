@@ -1,5 +1,7 @@
 # JAVA
 This sheet convers all the basics of JAVA
+Every class in the java extends Object class that makes the java 99.99% object oriented except the primitive classes ex: int, float this are premitive classes
+This improves java performance since primitive types are fixed and no need to store in the heap memory that is is time consuming.
 ## Introduction
     IDE – Integrated Development Environment
     Always use LTS version of Java (Long Term Support)
@@ -855,6 +857,8 @@ This sheet convers all the basics of JAVA
         	    System.out.println(obj.add(2,3));
         	}
         }
+### Wrapper Class
+
 
 
     
