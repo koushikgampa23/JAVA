@@ -966,7 +966,180 @@ This improves java performance since primitive types are fixed and no need to st
 	    }
 	
 	}
+### Abstarct Keyword
+	// A Abstract method is a method that is defined in the class but it is not implemented. the class that inherites the abstract class must implement abstract method
+	// A Abstract can only be implemented inside a abstract class
+	// Cannot create a obj of the abstract car.but we can take the instance of it
+ 	// It is not mandatory to have abstract methods inside abstarct class. we can even have normal methods as well.
+  	// The abstarct method can have both abstract and non abstarct methods.(multiple abstract methods is possible).
+   	// The class that implements abstract class is the concrete class.
+	
+	abstract class Car {
+	    public abstract void drive(); //Here we defining a method but we are not implementing
+	    public void playMusic() { //Normal Method
+	        System.out.println("Playing Music ...");
+	    }
+	}
+	
+	class WagonR extends Car { //Concrete Class
+	    public void drive(){
+	        System.out.println("Iam Driving WagonR");
+	    }
+	}
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	// 		Car obj = new Car(); //Not possible
+	        Car obj = new WagonR(); //Possible
+	        WagonR obj2 = new WagonR();
+	        obj.drive();
+	        obj.playMusic();
+		}
+	}
+	//Example of implementing multiple abstract classes
+	
+	abstract class Car {
+	    public abstract void drive();
+	    public abstract void fly();
+	    public void playMusic() { 
+	        System.out.println("Playing Music ...");
+	    }
+	}
+	
+	abstract class WagonR extends Car {
+	    public void drive(){
+	        System.out.println("Iam Driving WagonR");
+	    }
+	}
+	
+	class UpdatedWagonR extends WagonR {
+	    public void fly() {
+	        System.out.println("The car is flying");
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        // Car obj = new WagonR(); // Not Possible since abstract
+	        Car obj = new UpdatedWagonR();
+	        obj.drive();
+	        obj.fly();
+	        obj.playMusic();
+		}
+	}
+### Inner Class
+	class A {
+	    int age;
+	    public void show() {
+	        System.out.println("This is inside the show");
+	        // B obj = new B(); //we can call like this 
+	        // obj.config();
+	    }
+	    class B {
+	        public void config() {
+	            System.out.println("This is from config");
+	        }
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        A obj = new A();
+	        obj.show();
+	        A.B obj1 = obj.new B();
+	        // Object Location need to mention object name = the outer class object instance to create new object of B. jus like we obj.show() we use obj.new
+	        obj1.config();
+		}
+	}
 
+ 	// Making Static B
+	  class A {
+	    int age;
+	    public void show() {
+	        System.out.println("This is inside the show");
+	    }
+	    static class B { // Now this is static class
+	        public void config() {
+	            System.out.println("This is from config");
+	        }
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        A obj = new A();
+	        obj.show();
+	        A.B obj1 = new A.B(); // This will only work when i make B class has static
+	        obj1.config();
+		}
+	}
+### Anonyomous Inner class
+	Anonyomous Means class that doesnot have name.
+	// class A {
+	//     public void show() {
+	//         System.out.println("This is A show");
+	//     }
+	// }
+	
+	// public class Main
+	// {
+	// 	public static void main(String[] args) {
+	//         A obj = new A();
+	//         obj.show();
+	// 	}
+	// }
+	
+	//I have this code how to give new behaviour to the show method
+	// Option1: create a new class B use method overriding and add new behaviour but the only purpose of the B class is the to override A method
+	// The best way is to use anonymous fucntion
+	
+	class A {
+	    public void show() {
+	        System.out.println("This is A show");
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        A obj = new A() 
+	        { //We have created a class without any name
+	            public void show() {
+	                System.out.println("This is new Show");
+	            }
+	        };
+	        obj.show();
+		}
+	}
+#### Abstract for anonyomous class
+	abstract class A {
+	    public void show() {
+	        System.out.println("This is A show");
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        A obj = new A() //Here this code will work since we are not creating object of the abstract class. but we are creating object of anonmyous class
+	        {
+	            public void show() {
+	                System.out.println("This is new Show");
+	            }
+	        };
+	        obj.show();
+		}
+	}
+## Interface
 
 
 
