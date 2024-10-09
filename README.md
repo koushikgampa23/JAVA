@@ -858,8 +858,16 @@ This improves java performance since primitive types are fixed and no need to st
         	}
         }
 ### Wrapper Class
-
-
+	Primitive type have Object classes of there own int is primitive where Integer is a Object that extends Object Class.
+	AutoBoxing - When we store a primitive type in the object automatically
+ 	Autounboxing - when we take out the primitive value from the object
+  	int num = 8;
+   	Integer num1 = num; //Auto Boxing
+	int num2 = num1; //Auto Unboxing
+	String str = "12";
+	int num = Integer.parseInt(str);
+	System.out.println(num);
+ 
 
     
 
