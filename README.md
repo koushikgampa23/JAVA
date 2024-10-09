@@ -1141,7 +1141,7 @@ This improves java performance since primitive types are fixed and no need to st
 	}
 ## Interface
 	What is the need of interface?
- 	
+ 		To make the code loosly coupled.
 	// Interface is type of class where all the methods inside the class are public abstract methods by default even if we dont define
 	// Instead of extends we are using implements
 	// By default in interface variables are static and final by default
@@ -1192,6 +1192,40 @@ This improves java performance since primitive types are fixed and no need to st
 	        obj1.fly();
 		}
 	}
+
+  Actual Example of Interface:
+  	// We use interfaces to make code loosly coupled
+		interface Computer {
+		    void show();
+		}
+		
+		class Laptop implements Computer {
+		    public void show() {
+		        System.out.println("This is laptop, codes that are faster");
+		    }
+		}
+		
+		class Desktop implements Computer {
+		    public void show() {
+		        System.out.println("This is computer, codes better than laptop");
+		    }
+		}
+		
+		class Employee {
+		    public void showSystem(Computer obj) { // Here we are using Computer class instance that makes more generic we can use laptop or computer classes instances
+		        obj.show();
+		    }
+		}
+		
+		public class Main
+		{
+			public static void main(String[] args) {
+			    Employee emp = new Employee();
+			    Computer desk = new Desktop();
+			    Computer lap = new Laptop();
+			    emp.showSystem(desk);
+			}
+		}
 
     
 
