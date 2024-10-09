@@ -867,7 +867,108 @@ This improves java performance since primitive types are fixed and no need to st
 	String str = "12";
 	int num = Integer.parseInt(str);
 	System.out.println(num);
- 
+## Simple Quiz game application 
+	Main.java 	
+		public class Main {
+		    public static void main(String args[]) {
+		        QuestionService service = new QuestionService();
+		        service.displayService();
+		        int score = service.getScore();
+		        System.out.println(score);
+		    }
+		}
+  QuestionService.java
+		import java.util.Scanner;
+		public class QuestionService {
+		    Question[] question = new Question[5];
+		    Scanner sc = new Scanner(System.in);
+		    String[] answers = new String[5];
+		
+		    QuestionService() {
+		        question[0] = new Question(1, "Tyres of Car", "4", "2", "1", "0", "4");
+		        question[1] = new Question(2, "Tyres of bike", "4", "2", "1", "0", "2");
+		        question[2] = new Question(3, "Tyres of lorry", "14", "16", "2", "0", "16");
+		        question[3] = new Question(4, "Tyres of boat", "4", "2", "1", "0", "0");
+		        question[4] = new Question(5, "Tyres of human", "4", "2", "1", "0", "0");
+		    }
+		
+		    public void displayService() {
+		        int index = 0;
+		        for (Question indQues : question) {
+		            System.out.println(indQues.toString());
+		            System.out.print("Enter the answer:");
+		            answers[index] = sc.nextLine();
+		            index++;
+		        }
+		        System.out.println(answers);
+		    }
+		
+		    public int getScore() {
+		        int score = 0;
+		        for (int i = 0; i < question.length; i++) {
+		            String actualAnswer = question[i].getAnswer();
+		            String enteredAnswer = answers[i];
+		            if (actualAnswer.equals(enteredAnswer)) {
+		                score++;
+		            }
+		        }
+		        return score;
+		    }
+		}
+	Question.java
+	 	public class Question {
+	    private int id;
+	    private String question;
+	    private String option1;
+	    private String option2;
+	    private String option3;
+	    private String option4;
+	    private String answer;
+	
+	    Question(int id, String question, String option1, String option2, String option3, String option4, String answer) {
+	        this.id = id;
+	        this.question = question;
+	        this.option1 = option1;
+	        this.option2 = option2;
+	        this.option3 = option3;
+	        this.option4 = option4;
+	        this.answer = answer;
+	    }
+	
+	    public int getId() {
+	        return this.id;
+	    }
+	
+	    public void setId(int id) {
+	        this.id = id;
+	    }
+	
+	    public String getQuestion() {
+	        return this.question;
+	    }
+	
+	    public void setQuestion(String question) {
+	        this.question = question;
+	    }
+	
+	    public String getAnswer() {
+	        return this.answer;
+	    }
+	
+	    public void setAnswer(String answer) {
+	        this.answer = answer;
+	    }
+	
+	    @Override
+	    public String toString() {
+	        return "Question [id=" + id + ", question=" + question + ", option1=" + option1 + ", option2=" + option2
+	                + ", option3=" + option3 + ", option4=" + option4 + "]";
+	    }
+	
+	}
+
+
+
 
     
 
