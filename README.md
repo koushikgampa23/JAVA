@@ -1140,8 +1140,58 @@ This improves java performance since primitive types are fixed and no need to st
 		}
 	}
 ## Interface
-
-
+	What is the need of interface?
+ 	
+	// Interface is type of class where all the methods inside the class are public abstract methods by default even if we dont define
+	// Instead of extends we are using implements
+	// By default in interface variables are static and final by default
+ 	// Since we cannot create objects based on interface then we cannot be able to modify the variables
+  	// Interface doesnot occupy the heap memory.
+   	// The concrete class can implement multiple interfaces where in abstract we can extend only one class.
+	// Inheritance is possible in the interface
+ 	// class - class extends
+  	// class - interface implements
+   	// interface - interface extends
+	
+	interface A {
+	    int age = 23;
+	    String area = "Mumbai";
+	    
+	    void show();
+	    void config();
+	}
+	interface X {
+	   void fly(); 
+	}
+	interface Y extends X {
+	    
+	}
+	class B implements A,Y { // Y doenot hace fly but got it because inheritance
+	    public void show() {
+	        System.out.println("Show implemented");
+	    }
+	    public void config() {
+	        System.out.println("Configuration Implemented");
+	    }
+	    public void fly() {
+	        System.out.println("Flying is happening");
+	    }
+	}
+	
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+	        A obj = new B();
+	        obj.show();
+	        obj.config();
+	        System.out.println(A.area);
+	        // A.area = "Hyderabad"; // Not possible since the area is final we cannot change
+	        // A.fly(); // A has no idea about the fly method so change the instance to get full data
+	        B obj1 = new B();
+	        obj1.fly();
+		}
+	}
 
     
 
