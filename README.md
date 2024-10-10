@@ -1226,6 +1226,167 @@ This improves java performance since primitive types are fixed and no need to st
 			    emp.showSystem(desk);
 			}
 		}
+### Enum Statements 
+  	Enum is a class, can create constructor, it extends object class
+  	enum Status {
+	    Success, Pending, Failure, Processing;
+	}
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+			Status status = Status.Success;
+			System.out.println(status);
+			Status[] arr = Status.values();
+			System.out.println(arr[0]);
+			// If else for enum
+			if(status == Status.Success) {
+			    System.out.println("In the success stage");
+			}
+			else if(status == Status.Failure) {
+			    System.out.println("In the failure stage");
+			}
+			else {
+			    System.out.println("In the processing or pending");
+			}
+			// Switch statements for enum 
+			switch(status) {
+			    case Success:
+			        System.out.println("In the success phase");
+			        break;
+			    case Failure:
+			        System.out.println("In the failure phase");
+			        break;
+			    default:
+			        System.out.println("In the processing or pending phase");
+			}
+		}
+	}
+
+#### Enum Class
+	enum Laptop {
+	    Mackbook(4000), Msi(50000), Dell(1000), Hp(500); //need to pass the price so we need a constructor
+	    
+	    private int price;
+	    
+	    Laptop(int price){
+	        this.price = price;
+	    }
+	    
+	    public void getPrice(){
+	        System.out.println(this.price);
+	    }
+	}
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+		    Laptop dell = Laptop.Dell;
+		    dell.getPrice();
+		}
+	}
+### Annotations
+	A supplement to the compiler
+ 	It is also called as meta data.Some time i want to intract with the compiler. This doesnot change the behaviour of the code but that reduces the bugs.
+	Annotations are the inbuilt statements that we can give some context to compiler about the action that we are doing.
+ 	It reduces the bugs since we can see the error during compile time itself.
+  	class A {
+	    public void shows() {
+	        System.out.println("This is A show");
+	    }
+	}
+	
+	class B extends A {
+	    public void show() {
+	        System.out.println("This is B class");
+	    }
+	}
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+		    B obj = new B();
+		    obj.shows();
+		}
+	}
+### Types of Interfaces
+	Normal Interface - 2 or 3 methods inside interface are called normal interface
+ 	Functional Interface / SAM(single abstract method) - interface with only one method
+  	Marker Interface - with no methods
+   	we can implement lambda functions using functional interface only
+### Lambda Functions
+	//Normal Invitation
+	interface A {
+	    void show();
+	}
+	
+	public class Main
+	{
+		public static void main(String[] args) {
+		    A obj = new A(){
+		        public void show() {
+		            System.out.println("This is the implemented system");
+		        }
+		    };
+		    obj.show();
+		    
+		}
+	}
+ 	Code after lambda functions
+  		interface A {
+		    void show(int i);
+		}
+		
+		public class Main
+		{
+			public static void main(String[] args) {
+			    A obj = (i) -> {
+			        System.out.println("Hello"+i);
+			    };
+			    obj.show(5);
+			    
+			}
+		}
+	Return Value for lambda functions
+ 		interface A {
+		    int add(int i, int j);
+		}
+		
+		public class Main
+		{
+			public static void main(String[] args) {
+			    A obj = (i,j) -> {
+			        return i+j;
+			    };
+			    System.out.println(obj.add(5,6));
+			}
+		}
+
+### Exception
+	public class Main
+	{
+		public static void main(String[] args) {
+		    int a = 0;
+		    int b = 0;
+		    int[] arr = new int[4];
+		    try {
+		        int c = a/b;
+		        int d = arr[4];
+		    }
+		    catch(ArithmeticException e){
+		        System.out.println("Exception statement : "+e);
+		    }
+		    catch(ArrayIndexOutOfBoundsException e){
+		        System.out.println("Another Exception Statement: "+ e);
+		    }
+		    catch(Exception e){
+		        System.out.println("Exception Statement: "+ e);
+		    }
+		    
+		    System.out.println("End statement");
+		}
+	}
+
 
     
 
