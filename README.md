@@ -1521,7 +1521,39 @@ This improves java performance since primitive types are fixed and no need to st
 	}
 
 	We need to mention System.in since we need to specify from we are getting input is it from System or console
- 	
+
+## Threading in Java
+	class A extends Thread{
+	    public void run() {
+	        for(int i=0;i<100;i++){
+	            System.out.println("Hi");
+	            try{
+	                Thread.sleep(1000);
+	            } catch(InterruptedException e) { System.out.println(e); }
+	        }
+	    }
+	}
+	
+	class B extends Thread{
+	    public void run() {
+	        for(int i=0;i<100;i++){
+	            System.out.println("Hello");
+	            try{
+	                Thread.sleep(1000);
+	            } catch(InterruptedException e) { System.out.println(e); }
+	        }
+	    }
+	}
+	
+	class Main {
+	    public static void main(String[] args) {
+	        A hiObj = new A();
+	        B helloObj = new B();
+	        hiObj.start();
+	        helloObj.start();
+	    }
+	}
+ 
 
 
 
