@@ -1363,6 +1363,8 @@ This improves java performance since primitive types are fixed and no need to st
 		}
 
 ### Exception
+	// Multiple try catch exceptions
+ 	// Always we need to place the critical statments in the try catch
 	public class Main
 	{
 		public static void main(String[] args) {
@@ -1386,9 +1388,140 @@ This improves java performance since primitive types are fixed and no need to st
 		    System.out.println("End statement");
 		}
 	}
+	// Throw exception and throw a message
+ 	class Main {
+	    public static void main(String[] args) {
+	        int a = 10;
+	        int b = 0;
+	        try {
+	           if(b==0) {
+	            throw new Exception("Problem with denominator");
+	            }
+	            int c = a/b;
+	            System.out.println(c);
+	        }
+	        catch(Exception e) {
+	            System.out.println(e); //java.lang.Exception: Problem with denominator
+	        }
+	    }
+	}
+ 	// Custom Exception
+	  	class CustomException extends Exception{
+	    public CustomException(String msg){
+	        // System.out.println("Zero Denominator Error:" + msg);
+	        super(msg);
+	    }
+	}
+	
+	class Main {
+	    public static void main(String[] args) {
+	        int a = 10;
+	        int b = 0;
+	        try {
+	           if(b==0) {
+	            throw new CustomException("Problem with denominator");
+	            }
+	            int c = a/b;
+	            System.out.println(c);
+	        }
+	        catch(Exception e) {
+	            System.out.println(e); //
+	        }
+		 	Sytem.out.println("Running");
+	    }
+	}
+ 
+ 	// Duking the Exception
+  	Normal way of handling Exception
+   	class Calculator {
+	    public void divide(int a, int b) {
+	        try{
+	            int c = a/b;
+	            System.out.println(c); 
+	        }
+	        catch(ArithmeticException e){
+	            System.out.println(e);
+	        }
+	    }
+	}
+	
+	class Main {
+	    public static void main(String[] args) {
+	       Calculator obj = new Calculator();
+	       obj.divide(10,5); //2
+	       obj.divide(10,0); //java.lang.ArithmeticException: / by zero
+	    }
+	}
 
+ 	// if i have multiple class or methods that have divide function everything has the same kind of exception instead of handling excetpion inside the subclass we can handle the exception in another class
+  	// Throws keyword tells that this particular class will throw a this kind of exception but it is not handled in the present class the class that implements this class will handle the exception
+   	// In the below example the exception handling is implemented in the parent class rather than subclass
+	    class Calculator {
+	        public void divide(int a, int b) throws ArithmeticException {
+	            int c = a/b;
+	            System.out.println(c);
+	        }
+	    }
+	    
+	    class Main {
+	        public static void main(String[] args) {
+	           Calculator obj = new Calculator();
+	           try {
+	               obj.divide(10,5); //2
+	               obj.divide(10,0);
+	           }
+	           catch(ArithmeticException e){
+	               System.out.println(e);
+	           }
+	        }
+	    }
 
-    
+## Reading Inputs from user
+	// How System.out.println works ?
+ 		println is the method of PrintStream Class. That we need to create a object for PrintStream to use println. Not to worry because the object is already created as static out inside System class.
+   	// Since System.out does it have System.in ?
+		Yes java has System.in that reads one letter at a time and when we print it gives the ascii value.
+  	Code:
+	   	import java.io.*;
+	
+		class Main {
+		    public static void main(String[] args) throws IOException{
+		        int num = System.in.read();
+		        System.out.println(num);
+		    }
+		}
+   
+	// BufferedReader
+ 	import java.io.*;
+
+	class Main {
+	    public static void main(String[] args) throws IOException{
+	        
+	        InputStreamReader in = new InputStreamReader(System.in);
+	        BufferedReader bf = new BufferedReader(in);
+	        int num = Integer.parseInt(bf.readLine());
+	        System.out.println(num);
+	        bf.close();
+	    }
+	}
+
+  	Buffered Reader needs InputStreamReader object has a argument where as InputStreamReader needs InputStream as a Argument here System.in is the InputStream.
+    and the readLine throws an Exception that can be handled using try/catch or use throws and make parent to handle it.(here parent is jvm since it is main it dangeours to use)
+	Since BufferedReader is a resource after use of resource close the resource.
+ 	
+	// Scanner Class
+ 	import java.util.Scanner;
+	
+	class Main {
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        int a = sc.nextInt();
+	        System.out.println(a);
+	    }
+	}
+
+	We need to mention System.in since we need to specify from we are getting input is it from System or console
+ 	
 
 
 
