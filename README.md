@@ -1553,6 +1553,92 @@ This improves java performance since primitive types are fixed and no need to st
 	        helloObj.start();
 	    }
 	}
+### Threading Using Runnable in Java
+	Code:
+ 		class A implements Runnable {
+            public void run(){
+                for(int i=0;i<10;i++){
+                    System.out.println("Display");
+                    try{
+                        Thread.sleep(1000);
+                    }
+                    catch(InterruptedException e){
+                        System.out.println(e);
+                    }
+                }
+            }
+        }
+        class B implements Runnable {
+            public void run() {
+                for(int i=0;i<10;i++){
+                    System.out.println("B Class");
+                    try{
+                        Thread.sleep(1000);
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+        }
+        class Main {
+            public static void main(String[] args) {
+                Runnable A = new A();
+                Runnable B = new B();
+                Thread t1 = new Thread(A);
+                Thread t2 = new Thread(B);
+                t1.start();
+                t2.start();
+            }
+        }
+### Race Condition
+	Code:
+		 class Counter {
+		    int count;
+		    public synchronized void increment() { //We have to synchorized that makes one thread to work at a time.
+		        count++;
+		    }
+		}
+		
+		
+		class Main {
+		    public static void main(String[] args) throws Exception {
+		        Counter c = new Counter();
+		        Runnable A = () -> {
+		                for(int i=0;i<1000;i++){
+		                    c.increment();
+		                }
+		        };
+		        Runnable B = () -> {
+		                for(int i=0;i<1000;i++){
+		                    c.increment();
+		                }
+		        };
+		        Thread t1 = new Thread(A);
+		        Thread t2 = new Thread(B);
+		        t1.start();
+		        t2.start();
+		        t1.join(); // We use this method to get the output from other thread
+		        t2.join(); // t1=1 then t2 = t1+1 = 2 and so on
+		        System.out.println(c.count); // we are getting random answer but expected is 2000
+		    }
+		}
+# Collection
+### ArrayList
+	To add values to array dynamic we use arraylist
+ 	Code:
+  		import java.util.*;
+
+		class Main {
+		    public static void main(String[] args) {
+		        List<Integer> nums = new ArrayList<Integer>();
+		        nums.add(4);
+		        nums.add(2);
+		        System.out.println(nums);
+		        System.out.println(nums.get(0));
+		        System.out.println(nums.indexOf(2));
+		    }
+		}
  
 
 
