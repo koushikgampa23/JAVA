@@ -1627,19 +1627,217 @@ This improves java performance since primitive types are fixed and no need to st
 ### ArrayList
 	To add values to array dynamic we use arraylist
  	Code:
-  		import java.util.*;
-
+  		import java.util.ArrayList;
+		import java.util.List;
+		
 		class Main {
 		    public static void main(String[] args) {
 		        List<Integer> nums = new ArrayList<Integer>();
-		        nums.add(4);
-		        nums.add(2);
+		        nums.add(10);
+		        nums.add(20);
 		        System.out.println(nums);
 		        System.out.println(nums.get(0));
-		        System.out.println(nums.indexOf(2));
+		        System.out.println(nums.indexOf(20));
+		        nums.set(0,5);
+		        System.out.println(nums);
+		        // Iteration
+		        for(int i: nums){
+		            System.out.println(i);
+		        }
 		    }
 		}
- 
+		Arraylist can be of type collection as well but we use List since List has many methods. Just to insert values Collection can be usefull but if i want to work with indexes i need to List
+  		Collection<Integer> nums = new ArrayList<Integer>();
+		List extends Collection but the class that implements List is ArrayList
+### Set
+ 	Set extends Collection the class that implements Set is Hashset
+  	Set Doesnot gives values in the sorted order and doesnot have indexing operations
+  	Code:
+		import java.util.HashSet;
+		import java.util.Set;
+		import java.util.Iterator;
+		
+		class Main {
+		    public static void main(String[] args) {
+		        Set<Integer> nums = new HashSet<Integer>();
+		        nums.add(10);
+		        nums.add(20);
+		        nums.add(20);
+		        System.out.println(nums);
+		        for(int i:nums){
+		            System.out.println(i);
+		        }
+		        System.out.println("Iterator Starts Here");
+		        // Instead of This for loop i can use Iterator
+		        Iterator<Integer> values= nums.iterator();
+		        // .next() method gives one value at once
+		        while(values.hasNext())
+		            System.out.println(values.next());
+		    }
+		}
+### Map
+	Map extends collection and HashMap implements Map
+ 	Difference between hashmap and hashtable is hashtable is syncronized when we working with threads it is always better to work with hashtable
+ 	Code:
+  	import java.util.Map;
+	import java.util.HashMap;
+	
+	class Main {
+	    public static void main(String[] args) {
+	        Map<String,Integer> students = new HashMap<String,Integer>();
+	        students.put("a", 10);
+	        students.put("b", 20);
+	        students.put("c", 10);
+	        students.put("a", 15);
+	        System.out.println(students); // Print everyting
+	        System.out.println(students.keySet());
+	        
+	        for(String key: students.keySet()){
+	            System.out.println(key+":"+students.get(key));
+	        }
+	    }
+	}
+
+ 	Hashtable syntax:
+  		Map<String, Integer> students = new Hashtable<String, Integer>();
+
+### Comparator
+	Code:
+ 		import java.util.Collections;
+		import java.util.ArrayList;
+		import java.util.List;
+		import java.util.Comparator;
+		
+		class Main {
+		    public static void main(String[] args) {
+		       List<Integer> nums = new ArrayList<>();
+		       nums.add(10);
+		       nums.add(5);
+		       nums.add(20);
+		       
+		       Collections.sort(nums); // Default Sort
+		       System.out.println("default sort"+nums);
+		       
+		       // Custom Sort, sort based on last element
+		       Comparator<Integer> comp = new Comparator<Integer>(){
+		           public int compare(Integer i, Integer j){
+		               if(i%10 > j%10){
+		                   return 1;
+		               }
+		               else{
+		                   return -1;
+		               }
+		           }
+		       };
+		       Collections.sort(nums, comp);
+		       System.out.println("sort based on last digit" + nums);
+		       
+		    }
+		}
+#### Comparator for the Student type
+	Code:
+ 		import java.util.List;
+		import java.util.ArrayList;
+		import java.util.Comparator;
+		import java.util.Collections;
+		
+		class Student {
+		    String name;
+		    int age;
+		    public Student(String name, int age) {
+		        this.name = name;
+		        this.age = age;
+		    }
+		    public String toString(){
+		        return name + ",age:"+age;
+		    }
+		}
+		class Main {
+		    public static void main(String[] args) {
+		        List<Student> students = new ArrayList<Student>();
+		        students.add(new Student("a", 23));
+		        students.add(new Student("b", 21));
+		        students.add(new Student("c", 24));
+		        
+		        Comparator<Student> comp = new Comparator<Student>(){
+		            public int compare(Student a, Student b){
+		                if(a.age > b.age){
+		                    return 1;
+		                }
+		                else{
+		                    return -1;
+		                }
+		            }
+		        };
+		        Collections.sort(students, comp);
+		        System.out.println(students);
+		    }
+		}
+  Code Reduction using functionalComponents and teranary operator
+  Code:
+  	import java.util.List;
+	import java.util.ArrayList;
+	import java.util.Comparator;
+	import java.util.Collections;
+	
+	class Student {
+	    String name;
+	    int age;
+	    public Student(String name, int age) {
+	        this.name = name;
+	        this.age = age;
+	    }
+	    public String toString(){
+	        return name + ",age:"+age;
+	    }
+	}
+	class Main {
+	    public static void main(String[] args) {
+	        List<Student> students = new ArrayList<Student>();
+	        students.add(new Student("a", 23));
+	        students.add(new Student("b", 21));
+	        students.add(new Student("c", 24));
+	        
+	        Comparator<Student> comp = (a,b) -> {
+	                return a.age > b.age ? 1 : -1;
+	        };
+	        Collections.sort(students, comp);
+	        System.out.println(students);
+	    }
+	}
+## Using Comparable instead of comparator
+	Code:
+ 		import java.util.List;
+		import java.util.ArrayList;
+		import java.util.Collections;
+		
+		class Student implements Comparable<Student> {
+		    String name;
+		    int age;
+		    public Student(String name, int age) {
+		        this.name = name;
+		        this.age = age;
+		    }
+		    public String toString(){
+		        return name + ",age:"+age;
+		    }
+		    public int compareTo(Student that){
+		        return this.age > that.age ? 1 : -1;
+		    }
+		}
+		class Main {
+		    public static void main(String[] args) {
+		        List<Student> students = new ArrayList<Student>();
+		        students.add(new Student("a", 23));
+		        students.add(new Student("b", 21));
+		        students.add(new Student("c", 24));
+		        
+		        Collections.sort(students);
+		        
+		        System.out.println(students);
+		    }
+		}
+  
 
 
 
