@@ -1838,7 +1838,148 @@ This improves java performance since primitive types are fixed and no need to st
 		    }
 		}
   
-## Stream API
+### ForEach
+	Code:
+		import java.util.List;
+		import java.util.function.Consumer;
+		import java.util.Arrays;
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<Integer> nums = Arrays.asList(4, 5, 6, 7);
+		        Consumer<Integer> con = new Consumer<Integer>() {
+		            public void accept(Integer n) {
+		                System.out.println(n);
+		            }
+		        };
+		        nums.forEach(con); // This is the behind the scene
+		        nums.forEach((n) -> System.out.println(n)); // In most of the cases we use this
+		    }
+		}
+### Stream
+	Stream is gives methods such as filter, map methods to it.
+ 	If we use the stream the actual data is not mutated.
+  	Stream allows us to perform only one operation on the data.
+   	import java.util.List;
+	import java.util.function.Consumer;
+	import java.util.stream.Stream;
+	import java.util.Arrays;
+	
+	public class Main {
+	    public static void main(String args[]) {
+	        List<Integer> nums = Arrays.asList(4, 5, 6, 7);
+	        Stream<Integer> s1 = nums.stream();
+	        s1.forEach((n) -> System.out.println(n));
+	        s1.forEach((n) -> System.out.println(n)); // stream has already been operated upon or closed
+	    }
+	}
+	Actual Code:
+ 		import java.util.List;
+		import java.util.stream.Stream;
+		import java.util.Arrays;
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<Integer> nums = Arrays.asList(4, 5, 6, 7);
+		        Stream<Integer> s1 = nums.stream();
+		        Stream<Integer> s2 = s1.filter(n -> n % 2 == 0); //Filter function
+		        Stream<Integer> s3 = s2.map(n -> n * n); //Map function
+		        s3.forEach((n) -> System.out.println(n)); //forEach
+		        // Instead of doing in this many variables we can write like this
+		        int result = nums.stream().filter(n -> n % 2 == 0).map(n -> n * n).reduce(0, (c, e) -> c + e);
+		        System.out.println(result);
+		    }
+		}
+### Parallel Strea
+	Code:
+ 		import java.util.List;
+		import java.util.ArrayList;
+		import java.util.Random;
+		import java.util.stream.Stream;
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<Integer> nums = new ArrayList<>();
+		        Random ran = new Random();
+		        for (int i = 0; i < 1000; i++) {
+		            nums.add(ran.nextInt());
+		        }
+		        int s1 = nums.stream().map(n -> n * n).reduce(0, (c, e) -> c + e);
+		        int s2 = nums.stream().map(n -> n * n).mapToInt(n -> n).sum();
+		        int s3 = nums.parallelStream().map(n -> n * n).mapToInt(n -> n).sum();
+		        System.out.println(s1 + " " + s2 + " " + s3);
+		    }
+		}
+		
+		// Parallel stream works faster since it creates multiple threads
+		// Parallel stream doesnot work if want to sort
+## Optional Class
+	There will be a scenario where i might not get any value in such case i need to make my string Optional so that i can avoid nullpointerexception
+ 	Code:
+	 	import java.util.List;
+		import java.util.Arrays;
+		import java.util.Optional;
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<String> names = Arrays.asList("ram", "krishna", "raja", "laxmi");
+		        Optional<String> targetName = names.stream().filter(name -> name.contains("x")).findFirst();
+		        // System.out.println(targetName.get()); // if laxmi is not present i get this exception NoSuchElementFoundException
+		        // Instead we can use this to avoid this exception
+		        System.out.println(targetName.orElse("Not Found")); // Gives values or Not Found
+		
+		        // We can do it another way
+		        String newTarget = names.stream().filter(name -> name.contains("x")).findFirst().orElse("Not Found");
+		        System.out.println(newTarget);
+		    }
+		}
+### Method Reference
+	Code:
+ 		import java.util.List;
+		import java.util.Arrays;
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<String> names = Arrays.asList("ram", "krishna", "raja", "laxmi");
+		        List<String> uNames = names.stream().map(name -> name.toUpperCase()).toList();
+		        System.out.println(uNames); // [RAM, KRISHNA, RAJA, LAXMI]
+		        // Instead of this i can use simply the code of Map using Method refrence
+		        // Method reference works on class/object::method Note: dont call this method just give name Example: String::toUpperCase
+		        List<String> upperNames = names.stream().map(String::toUpperCase).toList();
+		        System.out.println(upperNames);
+		        upperNames.stream().forEach(System.out::println);
+		    }
+		}
+### Constructor Reference
+	Convert a names list to Student list
+ 	Code:
+  		import java.util.List;
+		import java.util.Arrays;
+		
+		class Student {
+		    String name;
+		
+		    public Student(String name) {
+		        this.name = name;
+		    }
+		}
+		
+		public class Main {
+		    public static void main(String args[]) {
+		        List<String> names = Arrays.asList("ram", "krishna", "laxmi");
+		        List<Student> studentsObjs = names.stream().map(name -> new Student(name)).toList();
+		        System.out.println(studentsObjs);
+		
+		        // Easiest way to do it
+		        List<Student> students = names.stream().map(Student::new).toList();
+		        System.out.println(students);
+		    }
+		}
+
+
+
+
+	
 
 
 
