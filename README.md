@@ -1805,7 +1805,7 @@ This improves java performance since primitive types are fixed and no need to st
 	        System.out.println(students);
 	    }
 	}
-## Using Comparable instead of comparator
+### Using Comparable instead of comparator
 	Code:
  		import java.util.List;
 		import java.util.ArrayList;
@@ -1838,7 +1838,7 @@ This improves java performance since primitive types are fixed and no need to st
 		    }
 		}
   
-
+## Stream API
 
 
 
