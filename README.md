@@ -1975,6 +1975,15 @@ This improves java performance since primitive types are fixed and no need to st
 		        System.out.println(students);
 		    }
 		}
+### Maven
+	Maven is a project management tool. that can help us do this operation such as compiling, running, Test, package, deploy
+ 	To use external libraries, and to to work with dependencies
+  	maintaining jar files versioning.
+   	Example:
+		spring 5 works with hibernate 4
+  		But we cannot say spring 6 can work with hibernate 4
+	So downloading the dependence is not good.
+ 	Maven helps in this management.
 
 
 
