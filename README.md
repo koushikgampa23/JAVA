@@ -1984,6 +1984,24 @@ This improves java performance since primitive types are fixed and no need to st
   		But we cannot say spring 6 can work with hibernate 4
 	So downloading the dependence is not good.
  	Maven helps in this management.
+### Spring Project Setup and structure
+  	Every projects follows groupid, artifact id and version
+   	groupid is the unique that cannot be found in the world, artifact id is the project name
+    	com.koushik.java reverse of my domin since domain names are unique in the world
+     	Java Turorial is the artifact id that is project name
+	Pom.xml file stores all the dependencies and plugins many other settings
+ 	When we run a java applicaiton it doenot look at Pom file it looks at the effective pom, effective pom is responsible for all the dependices
+  	Right click on pom file and click on effective pom to see it\
+   	Archetypes:
+		Basic we can create our own templates for the projects or else we can use the existing template strcutures available in the world.
+  	When ever i create a project i can choose archetype and select maven central for internet maven repos and select on spring-mvc-jersey archetype to start a project
+### How maven works
+	Every time when i ask for a dependency it is going to .m2 folder(local folder) located in the documents folder and searchs for the dependency if it is not found then it will go the maven central (internet) and download the dependency.
+ 	Since most of the dependencies we are getting from internet they can be vulnerable. so we need to update our dependencies time to time.
+  	
+ 
+   
+      	
 
 
 
