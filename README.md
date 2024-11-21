@@ -1998,7 +1998,16 @@ This improves java performance since primitive types are fixed and no need to st
 ### How maven works
 	Every time when i ask for a dependency it is going to .m2 folder(local folder) located in the documents folder and searchs for the dependency if it is not found then it will go the maven central (internet) and download the dependency.
  	Since most of the dependencies we are getting from internet they can be vulnerable. so we need to update our dependencies time to time.
-  	
+## JDBC (Java DataBase Connector)
+	It follows 7 steps
+ 		1. Import Package
+   		2. Load Driver (that is coming from jar file)
+	 	3. Register the driver
+   		4. Create a Connection
+	 	5. Create the statement
+	 	6. Excecute the statement
+   		7. Close
+	
  
    
       	
