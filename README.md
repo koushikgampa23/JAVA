@@ -1991,7 +1991,7 @@ This improves java performance since primitive types are fixed and no need to st
      	Java Turorial is the artifact id that is project name
 	Pom.xml file stores all the dependencies and plugins many other settings
  	When we run a java applicaiton it doenot look at Pom file it looks at the effective pom, effective pom is responsible for all the dependices
-  	Right click on pom file and click on effective pom to see it\
+  	Right click on pom file and click on effective pom to see it
    	Archetypes:
 		Basic we can create our own templates for the projects or else we can use the existing template strcutures available in the world.
   	When ever i create a project i can choose archetype and select maven central for internet maven repos and select on spring-mvc-jersey archetype to start a project
@@ -2001,12 +2001,33 @@ This improves java performance since primitive types are fixed and no need to st
 ## JDBC (Java DataBase Connector)
 	It follows 7 steps
  		1. Import Package
-   		2. Load Driver (that is coming from jar file)
-	 	3. Register the driver
-   		4. Create a Connection
-	 	5. Create the statement
-	 	6. Excecute the statement
-   		7. Close
+   		2. Load Driver and register(that is coming from jar file)
+   		3. Create a Connection
+	 	4. Create the statement
+	 	5. Excecute the statement
+   		6. Process the request
+   		6. Close
+	 Connect to postgres sql
+  		1. postgres dependency from mvm repo to the pom.xml file
+		Write this code in this in Main.java
+			package org.example;
+			import java.sql.*;
+			
+			//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+			// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+			public class Main {
+			    public static void main(String[] args) throws ClassNotFoundException, SQLException{
+			        String url = "jdbc:postgresql://localhost:5432/java_tutorial";
+			        String uname = "postgres";
+			        String password = "koushik";
+			
+			        Class.forName("org.postgresql.Driver");
+			        Connection con = DriverManager.getConnection(url, uname, password);
+			
+			        System.out.println("Connection Established");
+			    }
+			}
+     	
 	
  
    
