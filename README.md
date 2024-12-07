@@ -2007,26 +2007,97 @@ This improves java performance since primitive types are fixed and no need to st
 	 	5. Excecute the statement
    		6. Process the request
    		6. Close
+	Simple Code to connect to postgres and execute a query to retrive a student name
 	 Connect to postgres sql
   		1. postgres dependency from mvm repo to the pom.xml file
 		Write this code in this in Main.java
 			package org.example;
 			import java.sql.*;
+			import java.lang.*;
 			
-			//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-			// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 			public class Main {
 			    public static void main(String[] args) throws ClassNotFoundException, SQLException{
 			        String url = "jdbc:postgresql://localhost:5432/java_tutorial";
 			        String uname = "postgres";
 			        String password = "koushik";
+			        String query = "select * from student where sid=3";
 			
-			        Class.forName("org.postgresql.Driver");
-			        Connection con = DriverManager.getConnection(url, uname, password);
+			        // Class.forName("org.postgresql.Driver"); // Registering the driver(optional)
+			        Connection con = DriverManager.getConnection(url, uname, password); // Make connection
+			        Statement st = con.createStatement();
+			        ResultSet result = st.executeQuery(query);
+			        System.out.println(result); // org.postgresql.jdbc.PgResultSet@43bd930a
+		   
+			        result.next(); // The pointer in the database is pointing at the title of database by using .next() the pointer will shift to next record if found true else false
+			        System.out.println(result.getString("sname"));
 			
+			        con.close(); // close the connection
 			        System.out.println("Connection Established");
 			    }
 			}
+
+#### Retriving multiple values
+	query = "select * from student";
+ 	while(result.next()){
+  		System.out.println(result.getString("sname"));
+	}
+### CRUD operations
+	For select we use st.executeQuery() returns queryset; for insert, delete, update we use st.execute(); returns boolean 
+		package org.example;
+		import java.sql.*;
+		import java.lang.*;
+		
+		public class Main {
+		    public static void main(String[] args) throws ClassNotFoundException, SQLException{
+		        String url = "jdbc:postgresql://localhost:5432/java_tutorial";
+		        String uname = "postgres";
+		        String password = "koushik";
+		        
+		//      String query = "insert into student values(5, 'john'),(6,'ram')";
+		//      String updateQuery = "update student set sname='jonny' where sname='john'";
+		        String deleteQuery = "delete from student where sid=6";
+		
+		        Connection con = DriverManager.getConnection(url, uname, password); // Make connection
+		        Statement st = con.createStatement();
+		        
+		//      boolean status = st.execute(query);
+		//      boolean status = st.execute(updateQuery);
+		        boolean status = st.execute(deleteQuery);
+		        System.out.println(status); // insert,update or delete query false
+		        
+		        con.close(); // close the connection
+		        System.out.println("Connection Established");
+		    }
+		}
+#### Prepared Statements
+	Instead of writing raw sql queries we can use prepared statements Advantages: does chaching, stops sql injection.
+ 		package org.example;
+		import java.sql.*;
+		import java.lang.*;
+
+		public class Main {
+		    public static void main(String[] args) throws ClassNotFoundException, SQLException{
+		        String url = "jdbc:postgresql://localhost:5432/java_tutorial";
+		        String uname = "postgres";
+		        String password = "koushik";
+		
+		        int sid = 7;
+		        String sname = "harsha";
+		        String query = "insert into student values(?,?)";
+		
+		        Connection con = DriverManager.getConnection(url, uname, password); // Make connection
+		        PreparedStatement ps = con.prepareStatement(query);
+		
+		        ps.setInt(1, sid); // Instead of using column name we can give numbering also
+		        ps.setString(2, sname);
+		        ps.execute(); // Important step
+		
+		        con.close(); // close the connection
+		        System.out.println("Connection Established");
+		    }
+		}
+
+   
      	
 	
  
